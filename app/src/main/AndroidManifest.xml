@@ -8,12 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EnrollActivity"/>
+        <activity android:name=".ListActivity"/>
+        <activity android:name=".MypageActivity"/>
+        <activity android:name=".PostActivity"/>
+        <activity android:name=".SignupActivity"/>
         <activity android:name=".MainActivity">
+            <!--액티비티 추가 -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+            <!--메인액티비티-->
         </activity>
     </application>
 
