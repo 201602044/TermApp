@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by sj on 2018-10-10.
+ * Created by sj on 2018-10-10. tesgt
  */
 public class LoginActivity extends AppCompatActivity {
     //test first
