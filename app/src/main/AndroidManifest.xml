@@ -13,13 +13,12 @@
         <activity android:name=".MypageActivity"/>
         <activity android:name=".PostActivity"/>
         <activity android:name=".SignupActivity"/>
-        <activity android:name=".MainActivity">
-            <!--액티비티 추가 -->
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".LoginActivity">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-            <!--메인액티비티-->
         </activity>
     </application>
 
