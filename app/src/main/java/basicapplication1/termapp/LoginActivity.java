@@ -1,5 +1,6 @@
 package basicapplication1.termapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by sj on 2018-10-10. tesgt
@@ -20,14 +22,23 @@ public class LoginActivity extends AppCompatActivity {
     private  EditText editText;
    private  EditText editText2;
     private  SharedPreferences.Editor editor;
+    public static Activity loginActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginActivity=LoginActivity.this;
+        pref=getSharedPreferences("pref",MODE_PRIVATE);
+        editor = pref.edit();
+        Intent intent = getIntent();
+        if(intent.getBooleanExtra("logout",false)){
+            editor.clear();
+            return;
+        }
+        //만약 메인페이지에서 로그아웃을한다면
         checkBox=(CheckBox) findViewById(R.id.login_checkbox);
         editText=((EditText) findViewById(R.id.login_id));
         editText2=((EditText) findViewById(R.id.login_passwd));
-        pref=getSharedPreferences("pref",MODE_PRIVATE);
        checkBox.setChecked(pref.getBoolean("login_checkbox",false));
         if(checkBox.isChecked()) {
             editText.setText(pref.getString("user_id",""));
@@ -37,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
    public  void setPreferences(String id, String passwd){
-     editor = pref.edit();
        editor.putString("user_id",id);
        editor.putString("user_passwd",passwd);
        editor.putBoolean("login_checkbox",true);
@@ -64,16 +74,17 @@ public void login(){
     try{
         LoginTask task   =   new LoginTask();
         String result=task.execute(id,passwd).get();
-        if(result.equals("1"))
+        if(result.contains("1")&&!result.contains("-1"))
         {
             Intent intent=new Intent(this,MainActivity.class);
             intent.putExtra("user_id",id);
-            intent.putExtra("user_passwd",passwd);
             if(checkBox.isChecked()) setPreferences(id,passwd);
+            else editor.clear();
             startActivity(intent);
             finish();
         }
         else    {
+            Toast.makeText(this,"아이디나 비밀번호가 일치x",Toast.LENGTH_SHORT).show();
             editText.setText("");
             editText2.setText("");
         }
@@ -84,3 +95,6 @@ public void login(){
 
 }
 
+//onStop 메소드로 자동로그인 해제시 shareprefrence 초기화필요
+//inent 로 받아서 로그아웃 케이스 추가해줘야함
+//signuptask 만들어줘야함
