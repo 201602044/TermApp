@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
 /**
  * Created by sj on 2018-10-10. tesgt
  */
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
     //test first
 
     private CheckBox checkBox;
@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
                 break;
             case  R.id.login_to_signup:
                 Intent intent;
-                intent=new Intent(LoginActivity.this, SignupActivity.class);
+                intent=new Intent(this,SignupActivity.class);
                 startActivity(intent);
                 break;
             default:

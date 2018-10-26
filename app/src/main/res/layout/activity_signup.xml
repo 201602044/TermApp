@@ -23,11 +23,13 @@
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:hint="비밀번호"/>
+            android:hint="비밀번호"
+          />
         <EditText
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:id="@+id/signup_passwd"/>
+            android:id="@+id/signup_passwd"
+            android:password="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="220dp"
@@ -40,7 +42,8 @@
         <EditText
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:id="@+id/signup_re_passwd"/>
+            android:id="@+id/signup_re_passwd"
+            android:password="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="220dp"

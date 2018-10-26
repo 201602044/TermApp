@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 /**
  * Created by sj on 2018-10-10.
+ *
  */
 public class SignupActivity   extends Activity {
     //test first

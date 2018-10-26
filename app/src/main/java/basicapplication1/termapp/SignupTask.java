@@ -12,7 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
 /**
  * Created by 리쌍d on 2018-10-17.
  */
@@ -21,7 +20,7 @@ public class SignupTask  extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         try {
-
+//            JSONObject jsonObject=new JSONObject();
             String str;
             URL url = new URL("http://thdeo706.vps.phps.kr:8080/TermApp/insert.jsp");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -30,11 +29,16 @@ public class SignupTask  extends AsyncTask<String, Void, String> {
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
+            conn.setRequestProperty("Cache-Control", "no-cache");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //json설정
             conn.setUseCaches(false);
             conn.setDefaultUseCaches(false);
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
             sendMsg = "user_id="+strings[0]+"&user_passwd="+strings[1]+"&user_nickname="+strings[2]
                     +"&user_phone_number="+strings[3]+"&user_email="+strings[4];
+//            jsonObject.put("user_id", strings[0]);
             osw.write(sendMsg);
             osw.flush();
             if(conn.getResponseCode() == conn.HTTP_OK) {
