@@ -30,19 +30,20 @@ public class LoginActivity extends AppCompatActivity {
         pref=getSharedPreferences("pref",MODE_PRIVATE);
         editor = pref.edit();
         Intent intent = getIntent();
-        if(intent.getBooleanExtra("logout",false)){
-            editor.clear();
-            return;
-        }
-        //만약 메인페이지에서 로그아웃을한다면
         checkBox=(CheckBox) findViewById(R.id.login_checkbox);
         editText=((EditText) findViewById(R.id.login_id));
         editText2=((EditText) findViewById(R.id.login_passwd));
+        if(intent.getBooleanExtra("logout",false)){
+            editor.clear();
+            editor.commit();
+            return;
+        }
+        //만약 메인페이지에서 로그아웃을한다면
        checkBox.setChecked(pref.getBoolean("login_checkbox",false));
         if(checkBox.isChecked()) {
             editText.setText(pref.getString("user_id",""));
             editText2.setText(pref.getString("user_passwd",""));
-//            login(); 주석해제시 자동 로그인
+             login(); //주석해제시 자동 로그인
         }
 
     }
@@ -73,7 +74,7 @@ public void login(){
     try{
         LoginTask task   =   new LoginTask();
         String result=task.execute(id,passwd).get();
-        if(result.contains("1")&&!result.contains("-1"))
+        if(result.equals("1"))
         {
             Intent intent=new Intent(this,MainActivity.class);
             intent.putExtra("user_id",id);

@@ -3,8 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -16,7 +16,6 @@
 
 
         <TextView
-            android:id="@+id/categoryTitle"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="제목 :" />
@@ -25,7 +24,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/writeTitle" />
+
+            />
     </LinearLayout>
 
 
@@ -35,7 +35,6 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/categoryWriter"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="작성자 :" />
@@ -43,15 +42,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/writeWriter" />
+        />
     </LinearLayout>
 
 
     <ImageButton
-        android:id="@+id/attachBtn"
         android:layout_width="34dp"
         android:layout_height="35dp"
-        app:srcCompat="@android:drawable/ic_input_add" />
+         />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,13 +57,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/categoryContent"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="내용 :" />
 
         <EditText
-            android:id="@+id/writeContent"
             android:layout_width="match_parent"
             android:layout_height="143dp" />
     </LinearLayout>
@@ -75,7 +71,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="확인"
-        android:id="@+id/enrollSubmitBtn"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
