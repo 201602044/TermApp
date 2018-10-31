@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center|top">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="1000"
+        android:textSize="50dp"
+        android:gravity="center"/>
+    <!--이미지, 뒤에 마일리지 적기 -->
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 변경"
+        android:id="@+id/mypage_re_passwd"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="닉네임 변경"
+        android:id="@+id/mypage_re_nickname"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="회원탈퇴"
+        android:id="@+id/mypage_delete"/>
+    <!--컨택팅플로스트들 추가 하기 비번,닉변,삭제-->
 </LinearLayout>

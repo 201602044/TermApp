@@ -5,72 +5,130 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <LinearLayout
-
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="제목 :" />
-
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="작성자 :" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:weightSum="1">
+<LinearLayout
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:weightSum="10"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="제목"
+        android:gravity="center"
         />
-    </LinearLayout>
-
-
-    <ImageButton
-        android:layout_width="34dp"
-        android:layout_height="35dp"
-         />
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:id="@+id/enroll_theme"/>
+</LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="50dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
+        <Spinner
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="내용 :" />
+            android:id="@+id/main_spinner_font"
+            android:entries="@array/font"
+            android:layout_weight="1"
+          >
+            </Spinner>
+        <!--sans, serif, monospace-->
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_spinner_size"
+            android:entries="@array/size"
+            android:layout_weight="1"
+           >
+            <!--14 18 22 sp-->
+        </Spinner>
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_spinner_color"
+            android:entries="@array/color"
+            android:layout_weight="1"
+         >
+            <!--black red green-->
+        </Spinner>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="143dp" />
     </LinearLayout>
-
-
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="확인"
-        android:layout_gravity="center_horizontal" />
-
+        android:weightSum="10"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="링크"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:id="@+id/enroll_link"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="소개"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:id="@+id/enroll_introduce"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="태그"
+            android:gravity="center"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:id="@+id/enroll_tag"/>
+        <!--#을 기준으로 파싱이 필요하다 .-->
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="글작성하기"
+            android:gravity="center"/>
+    </LinearLayout>
 </LinearLayout>
