@@ -8,6 +8,44 @@
     android:layout_height="match_parent"
     android:gravity="center|top"
     android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
+<!--스피너는 선택버튼때문에 크기가 더크다 -->
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/enroll_spinner_font"
+                android:entries="@array/font"
+                android:layout_weight="1"
+                >
+            </Spinner>
+            <!--sans, serif, monospace-->
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/enroll_spinner_size"
+                android:entries="@array/size"
+                android:layout_weight="1"
+                >
+                <!--14 18 22 sp-->
+            </Spinner>
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/enroll_spinner_color"
+                android:entries="@array/color"
+                android:layout_weight="1"
+                >
+                <!--black red green-->
+            </Spinner>
+
+
+    </LinearLayout>
 <LinearLayout
     android:layout_width="250dp"
     android:layout_height="wrap_content"
@@ -28,41 +66,6 @@
         android:id="@+id/enroll_theme"/>
 </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        >
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/main_spinner_font"
-            android:entries="@array/font"
-            android:layout_weight="1"
-          >
-            </Spinner>
-        <!--sans, serif, monospace-->
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/main_spinner_size"
-            android:entries="@array/size"
-            android:layout_weight="1"
-           >
-            <!--14 18 22 sp-->
-        </Spinner>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/main_spinner_color"
-            android:entries="@array/color"
-            android:layout_weight="1"
-         >
-            <!--black red green-->
-        </Spinner>
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -129,6 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="글작성하기"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:id="@+id/enroll_save"
+            android:onClick="onClick"/>
     </LinearLayout>
 </LinearLayout>

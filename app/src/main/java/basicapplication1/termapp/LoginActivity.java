@@ -71,20 +71,22 @@ public class LoginActivity extends AppCompatActivity {
 public void login(){
     String id=editText.getText().toString();
     String passwd=editText2.getText().toString();
+    String temp="type=login"+"&user_id="+id+"&user_passwd="+passwd;
     try{
-        LoginTask task   =   new LoginTask();
-        String result=task.execute(id,passwd).get();
-        if(result.equals("1"))
+        MemberTask task =new MemberTask();
+        String result=task.execute(temp).get();
+        if(!result.equals(""))
         {
             Intent intent=new Intent(this,MainActivity.class);
             intent.putExtra("user_id",id);
+            intent.putExtra("user_nickname",result);
             if(checkBox.isChecked()) setPreferences(id,passwd);
             else editor.clear();
             startActivity(intent);
             finish();
         }
         else    {
-            Toast.makeText(this,"아이디나 비밀번호가 일치x",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"아이디나 비밀번호가 일치하지않습니다."+result,Toast.LENGTH_SHORT).show();
             editText.setText("");
             editText2.setText("");
         }

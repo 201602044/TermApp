@@ -5,7 +5,8 @@
     android:gravity="center|top">
     <ImageView
         android:layout_width="80dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:src="@drawable/profile"/>
 
     <TextView
         android:layout_width="150dp"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 /**
  * Created by sj 2018-10-10.
@@ -18,6 +19,14 @@ public class EnrollActivity   extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
+    }
+    public  void onClick(View v){
+        switch (v.getId()){
+            case R.id.enroll_save:
+                break;
+            default:
+                break;
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

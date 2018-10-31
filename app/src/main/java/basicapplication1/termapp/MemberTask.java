@@ -23,7 +23,7 @@ public class MemberTask extends AsyncTask<String, Void, String> {
         try {
 
             String str;
-            URL url = new URL("http://thdeo706.vps.phps.kr:8080/TermApp/login.jsp");
+            URL url = new URL("http://thdeo706.vps.phps.kr:8080/TermApp/member.jsp");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -33,18 +33,8 @@ public class MemberTask extends AsyncTask<String, Void, String> {
             conn.setUseCaches(false);
             conn.setDefaultUseCaches(false);
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-            /*
-            if(strings[0].equals("1")){
-
-            }//변경
-            if ((strings[0].equals("2")){
-
-            }//삭제
-            if ((strings[0].equals("3")){
-
-            }//전화번호,이메일 가져오기
-            */
-            sendMsg = "user_id="+strings[0]+"&user_passwd="+strings[1];
+            sendMsg = strings[0];
+            //코드받을때 string[0]에서 처리해서온다
             osw.write(sendMsg);
             osw.flush();
             if(conn.getResponseCode() == conn.HTTP_OK) {
