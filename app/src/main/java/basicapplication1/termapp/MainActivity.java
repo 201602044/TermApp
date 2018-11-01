@@ -23,12 +23,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_to_list:
                 intent = new Intent(this, ListActivity.class);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.main_to_enroll:
                 intent = new Intent(this, EnrollActivity.class);
                 startActivity(intent);
-                finish();
                 break;
            //   웹크롤링버튼, 공유하기 넣어야함
             default:

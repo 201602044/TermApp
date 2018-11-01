@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
    private  EditText editText2;
     private  SharedPreferences.Editor editor;
     public static Activity loginActivity;
+    public static String now_id,now_nickname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,18 +77,20 @@ public void login(){
     try{
         MemberTask task =new MemberTask();
         String result=task.execute(temp).get();
-        if(!result.equals(""))
+        if(!result.equals("null"))
         {
             Intent intent=new Intent(this,MainActivity.class);
             intent.putExtra("user_id",id);
             intent.putExtra("user_nickname",result);
+            now_id=id;
+            now_nickname=result;
             if(checkBox.isChecked()) setPreferences(id,passwd);
             else editor.clear();
             startActivity(intent);
             finish();
         }
         else    {
-            Toast.makeText(this,"아이디나 비밀번호가 일치하지않습니다."+result,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"아이디나 비밀번호가 일치하지않습니다.",Toast.LENGTH_SHORT).show();
             editText.setText("");
             editText2.setText("");
         }

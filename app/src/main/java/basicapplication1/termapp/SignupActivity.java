@@ -51,6 +51,9 @@ public class SignupActivity   extends Activity {
                 if(result.contains("1")) {
                     Intent intent=new Intent(this, MainActivity.class);
                     intent.putExtra("user_id",member[0]);
+                    intent.putExtra("user_nickname",member[2]);
+                    LoginActivity.now_id=member[0];
+                    LoginActivity.now_nickname=member[1];
                     LoginActivity loginActivity=(LoginActivity) LoginActivity.loginActivity;
                     loginActivity.finish();
                     //LoginActivity 종료
