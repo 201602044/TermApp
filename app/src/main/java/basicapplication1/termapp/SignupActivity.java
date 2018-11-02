@@ -13,10 +13,14 @@ import android.widget.Toast;
  */
 public class SignupActivity   extends Activity {
     //test first
+    private  String sendMsg[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        sendMsg=new String[2];
+        sendMsg[1]="insert";
+
     }
 
 
@@ -45,15 +49,16 @@ public class SignupActivity   extends Activity {
                 return;
             }
             try {
-                SignupTask signupTask = new SignupTask();
-                String result = signupTask.execute(member).get();
+                sendMsg[0]="user_id="+member[0]+"&user_passwd="+member[1]+"&user_nickname="+member[2]
+                        +"&user_phone_number="+member[3]+"&user_email="+member[4];
+               mTask task= new mTask();
+                String result = task.execute(sendMsg).get();
+                task.cancel(true);
                 //result 1일때정상, 나머지 비정상
                 if(result.contains("1")) {
                     Intent intent=new Intent(this, MainActivity.class);
-                    intent.putExtra("user_id",member[0]);
-                    intent.putExtra("user_nickname",member[2]);
                     LoginActivity.now_id=member[0];
-                    LoginActivity.now_nickname=member[1];
+                    LoginActivity.now_nickname=member[2];
                     LoginActivity loginActivity=(LoginActivity) LoginActivity.loginActivity;
                     loginActivity.finish();
                     //LoginActivity 종료

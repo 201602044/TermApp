@@ -23,11 +23,12 @@ public class LoginActivity extends AppCompatActivity {
     private  SharedPreferences.Editor editor;
     public static Activity loginActivity;
     public static String now_id,now_nickname;
-
+   private  String[] sendMsg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sendMsg=new String[2];
         loginActivity=LoginActivity.this;
         pref=getSharedPreferences("pref",MODE_PRIVATE);
         editor = pref.edit();
@@ -47,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
             editText2.setText(pref.getString("user_passwd",""));
              login(); //주석해제시 자동 로그인
         }
-
     }
    public  void setPreferences(String id, String passwd){
        editor.putString("user_id",id);
@@ -73,15 +73,15 @@ public class LoginActivity extends AppCompatActivity {
 public void login(){
     String id=editText.getText().toString();
     String passwd=editText2.getText().toString();
-    String temp="type=login"+"&user_id="+id+"&user_passwd="+passwd;
+    sendMsg[0]="type=login"+"&user_id="+id+"&user_passwd="+passwd;
+    sendMsg[1]="member";
     try{
-        MemberTask task =new MemberTask();
-        String result=task.execute(temp).get();
+        mTask task =new mTask();
+        String result=task.execute(sendMsg).get();
+        task.cancel(true);
         if(!result.equals("null"))
         {
             Intent intent=new Intent(this,MainActivity.class);
-            intent.putExtra("user_id",id);
-            intent.putExtra("user_nickname",result);
             now_id=id;
             now_nickname=result;
             if(checkBox.isChecked()) setPreferences(id,passwd);
