@@ -48,8 +48,8 @@ public class mTask extends AsyncTask<String, Void, String> {
                 }
 
                 receiveMsg = buffer.toString();
-                receiveMsg=    receiveMsg.replaceAll(" ", "");
-                Log.i("문자",receiveMsg);
+//                receiveMsg=    receiveMsg.replaceAll(" ", "");
+                Log.i("문자",receiveMsg.trim());
             } else {
                 Log.i("통신 결과", conn.getResponseCode()+"에러");
                 System.out.print("에러");
@@ -66,8 +66,8 @@ public class mTask extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return  receiveMsg;
+        return  receiveMsg.trim();
     }
 }
 //AsyncTask 클래스
-//원하는 멤버 정보를 가져오고 , 삭제를 하는 클래스
+//생각을해보면 메세지/사이트 적어 보내고 데이터를 받아서 다른클래스에서 json을쓰든 뭘하든 하면됨

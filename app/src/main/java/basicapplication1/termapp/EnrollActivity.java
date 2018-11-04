@@ -36,54 +36,60 @@ public class EnrollActivity   extends AppCompatActivity {
     public  void onClick(View v){
         switch (v.getId()){
             case R.id.enroll_save:
-                editTexts[0]=(EditText) findViewById(R.id.enroll_theme);
-                editTexts[1]=(EditText) findViewById(R.id.enroll_link);
-                editTexts[2]=(EditText) findViewById(R.id.enroll_introduce);//=info
-                editTexts[3]=(EditText) findViewById(R.id.enroll_tag);
-                spinners[0]=(Spinner) findViewById(R.id.enroll_spinner_font);
-                spinners[1]=(Spinner) findViewById(R.id.enroll_spinner_size);
-                spinners[2]=(Spinner) findViewById(R.id.enroll_spinner_color);
-                //닉네임하고 폰트는 다른거
-                String font=spinners[0].getSelectedItem().toString()+"#"+spinners[1].getSelectedItem().toString()+"#"+
-                        spinners[2].getSelectedItem().toString();
-                for(int i=0;i<editTextSize;i++){
-
-                                if(editTexts[i].getText().toString().equals("")){
-                                    Toast.makeText(this,"공백이있습니다",Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-
-                }
-                if(font.equals("")){
-                    Toast.makeText(this,"공백이 있습니다",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                //공백처리
-                sendMsg[0]="page_theme="+editTexts[0].getText().toString()
-                        +"&page_link="+editTexts[1].getText().toString()
-                        +"&page_info="+editTexts[2].getText().toString()
-                        +"&page_nickname="+LoginActivity.now_nickname
-                        +"&page_tag="+editTexts[3].getText().toString()
-                        +"&page_font="+font;
-                mTask task=new mTask();
-
-
-                try{
-                    String result=task.execute(sendMsg).get();
-                    task.cancel(true);
-                    if(result.contains("1")){
-                        intent=new Intent(this,PostActivity.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(this,"실패",Toast.LENGTH_SHORT).show();
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                save_post();
                 break;
             default:
                 break;
+        }
+    }
+    public void save_post(){
+        editTexts[0]=(EditText) findViewById(R.id.enroll_theme);
+        editTexts[1]=(EditText) findViewById(R.id.enroll_link);
+        editTexts[2]=(EditText) findViewById(R.id.enroll_introduce);//=info
+        editTexts[3]=(EditText) findViewById(R.id.enroll_tag);
+        spinners[0]=(Spinner) findViewById(R.id.enroll_spinner_font);
+        spinners[1]=(Spinner) findViewById(R.id.enroll_spinner_size);
+        spinners[2]=(Spinner) findViewById(R.id.enroll_spinner_color);
+        //닉네임하고 폰트는 다른거
+        String font=spinners[0].getSelectedItem().toString()+"#"+spinners[1].getSelectedItem().toString()+"#"+
+                spinners[2].getSelectedItem().toString();
+        for(int i=0;i<editTextSize;i++){
+
+            if(editTexts[i].getText().toString().equals("")){
+                Toast.makeText(this,"공백이있습니다",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        }
+        if(font.equals("")){
+            Toast.makeText(this,"공백이 있습니다",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //공백처리
+        sendMsg[0]="page_theme="+editTexts[0].getText().toString()
+                +"&page_link="+editTexts[1].getText().toString()
+                +"&page_info="+editTexts[2].getText().toString()
+                +"&page_nickname="+LoginActivity.now_nickname
+                +"&page_tag="+editTexts[3].getText().toString()
+                +"&page_font="+font;
+        mTask task=new mTask();
+
+
+        try{
+            String result=task.execute(sendMsg).get();
+            task.cancel(true);
+            if(!result.equals("0")){
+                intent=new Intent(this,PostActivity.class);
+                intent.putExtra("page_nickname",LoginActivity.now_nickname);
+                intent.putExtra("page_num",result);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                Toast.makeText(this,"실패",Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
     @Override

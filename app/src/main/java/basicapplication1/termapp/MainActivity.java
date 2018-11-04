@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
            //   웹크롤링버튼, 공유하기 넣어야함
+            case  R.id.main_to_share:
+                intent = new Intent(this, PostActivity.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }

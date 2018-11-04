@@ -13,6 +13,8 @@ public class ListActivity   extends AppCompatActivity {
 //test first
 
     Intent intent;
+    private  String[] sendMsg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

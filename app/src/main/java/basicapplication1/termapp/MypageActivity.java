@@ -60,81 +60,13 @@ public class MypageActivity   extends AppCompatActivity {
                 folding(2);
                 break;
             case R.id.mypage_change_nickname_button:
-                editText1=(EditText) findViewById(R.id.mypage_change_nickname);
-                String change_nickname=editText1.getText().toString();
-                if(change_nickname.equals("")){
-                    Toast.makeText(this,"닉네임이공백입니다.",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-               try{
-                   type="update_nickname";
-                   sendMsg[0]="type="+type+"&user_nickname="+LoginActivity.now_nickname+"&change_nickname="+change_nickname;
-                   task =new mTask();
-                   result=task.execute(sendMsg).get();
-                   task.cancel(true);
-                   if(result.contains("1")){
-                       Toast.makeText(this,"닉네임이 변경되었습니다.",Toast.LENGTH_SHORT).show();
-                       LoginActivity.now_nickname=change_nickname;
-                   }
-                   else {
-                       Toast.makeText(this,"닉네임이 바뀌지 않았습니다.",Toast.LENGTH_SHORT).show();
-                   }
-                   editText1.setText("");
-               }catch (Exception e){
-                   e.printStackTrace();
-               }
+                    update_nickname();
                 break;
             case R.id.mypage_change_passwd_button:
-                editText1=(EditText) findViewById(R.id.mypage_now_passwd);
-                editText2=(EditText) findViewById(R.id.mypage_change_passwd);
-                String now_passwd=editText1.getText().toString();
-                String change_passwd=editText2.getText().toString();
-
-                if(change_passwd.equals("")||now_passwd.equals("")){
-                    Toast.makeText(this,"공백입니다.",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                try{
-                    type="update_passwd";
-                    sendMsg[0]="type="+type+"&user_id="+LoginActivity.now_id+"&user_passwd="+now_passwd+"&change_passwd="+change_passwd;
-                    task =new mTask();
-                    result=task.execute(sendMsg).get();
-                    task.cancel(true);
-                    if(result.contains("1")){
-
-                        Toast.makeText(this,"비밀번호가 변경되었습니다. 다시 로그인하세요",Toast.LENGTH_SHORT).show();
-
-                        intent = new Intent(this, LoginActivity.class);
-                        intent.putExtra("logout", true);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(this,"비밀번호가 바뀌지 않았습니다.",Toast.LENGTH_SHORT).show();
-                    }
-                    editText1.setText("");
-                    editText2.setText("");
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                update_passwd();
                 break;
-            case R.id.mypage_sign_out:
-                try {
-                    type="delete";
-                    sendMsg[0]="type="+type+"&user_id="+LoginActivity.now_id;
-                    task =new mTask();
-                    task.execute(sendMsg).get();
-                    task.cancel(true);
-                    Toast.makeText(this,"삭제.",Toast.LENGTH_SHORT).show();
-                    intent = new Intent(this, LoginActivity.class);
-                    intent.putExtra("logout", true);
-                    startActivity(intent);
-                    finish();
-
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+            case R.id.mypage_delete_id_button:
+                delete_id();
                 break;
             default:
                 break;
@@ -189,5 +121,84 @@ public class MypageActivity   extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.home_menu, menu);
         return true;
+    }
+    public void update_passwd(){
+
+        editText1=(EditText) findViewById(R.id.mypage_now_passwd);
+        editText2=(EditText) findViewById(R.id.mypage_change_passwd);
+        String now_passwd=editText1.getText().toString();
+        String change_passwd=editText2.getText().toString();
+
+        if(change_passwd.equals("")||now_passwd.equals("")){
+            Toast.makeText(this,"공백입니다.",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try{
+            type="update_passwd";
+            sendMsg[0]="type="+type+"&user_id="+LoginActivity.now_id+"&user_passwd="+now_passwd+"&change_passwd="+change_passwd;
+            task =new mTask();
+            result=task.execute(sendMsg).get();
+            task.cancel(true);
+            if(result.contains("1")){
+
+                Toast.makeText(this,"비밀번호가 변경되었습니다. 다시 로그인하세요",Toast.LENGTH_SHORT).show();
+
+                intent = new Intent(this, LoginActivity.class);
+                intent.putExtra("logout", true);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                Toast.makeText(this,"비밀번호가 바뀌지 않았습니다.",Toast.LENGTH_SHORT).show();
+            }
+            editText1.setText("");
+            editText2.setText("");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void update_nickname(){
+        editText1=(EditText) findViewById(R.id.mypage_change_nickname);
+        String change_nickname=editText1.getText().toString();
+        if(change_nickname.equals("")){
+            Toast.makeText(this,"닉네임이공백입니다.",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try{
+            type="update_nickname";
+            sendMsg[0]="type="+type+"&user_nickname="+LoginActivity.now_nickname+"&change_nickname="+change_nickname;
+            task =new mTask();
+            result=task.execute(sendMsg).get();
+            task.cancel(true);
+            if(result.contains("1")){
+                Toast.makeText(this,"닉네임이 변경되었습니다.",Toast.LENGTH_SHORT).show();
+                LoginActivity.now_nickname=change_nickname;
+            }
+            else {
+                Toast.makeText(this,"닉네임이 바뀌지 않았습니다.",Toast.LENGTH_SHORT).show();
+            }
+            editText1.setText("");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void delete_id(){
+
+        try {
+            type="delete";
+            sendMsg[0]="type="+type+"&user_id="+LoginActivity.now_id;
+            task =new mTask();
+            task.execute(sendMsg).get();
+            task.cancel(true);
+            Toast.makeText(this,"삭제.",Toast.LENGTH_SHORT).show();
+            intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("logout", true);
+            startActivity(intent);
+            finish();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
