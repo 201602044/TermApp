@@ -1,49 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="basicapplication1.termapp.MainActivity">
+    android:weightSum="1">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:id="@+id/main_slide"
+        android:src="@drawable/ani_cat"
+        />
     <!--나중에 슬라이드로 처리해야할 부분-->
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:fontFamily="monospace"
+        android:textSize="25dp"
+        android:text="화제의 에디터"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-        <TextView
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="글1"
-            android:textSize="30dp" />
+            android:layout_height="match_parent"
+            android:divider="#999999"
+            android:dividerHeight="1dp"
+            android:id="@+id/main_listview">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="글2"
-            android:textSize="30dp" />
+        </ListView>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="글3"
-            android:textSize="30dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="글4"
-            android:textSize="30dp" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_margin="15dp"
         android:gravity="bottom"
         android:weightSum="5">
@@ -57,7 +51,7 @@
             android:id="@+id/main_to_list"
             android:onClick="onClick"
             android:src="@drawable/list48"
-          />
+            />
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -68,18 +62,18 @@
             android:id="@+id/main_to_enroll"
             android:onClick="onClick"
             android:src="@drawable/edit48"
-          />
+            />
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/main_to_web"
             android:src="@drawable/timeline48"
             android:onClick="onClick"
-           />
+            />
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,10 +84,10 @@
             android:id="@+id/main_to_share"
             android:src="@drawable/share48"
             android:onClick="onClick"
-        />
+            />
         <View
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
     </LinearLayout>
