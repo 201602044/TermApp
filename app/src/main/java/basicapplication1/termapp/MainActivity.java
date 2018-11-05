@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.main_listview);
         listview.setAdapter(adapter);
         final ListViewItem[] listViewItems;
-        listViewItems= pl.makeList("page_like","","0","3");
+        listViewItems= pl.makeList("page_like","","0","4");
 
         if(listViewItems==null){
             Toast.makeText(this,"조회실패",Toast.LENGTH_LONG).show();
@@ -80,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
            //   웹크롤링버튼, 공유하기 넣어야함
             case  R.id.main_to_share:
+                String temp="line://msg/text/Editor Match UP 오픈 다운받으러 오세요";
+                intent=new Intent(intent.ACTION_SEND);
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.putExtra(intent.EXTRA_TEXT,"다운받으로 ㄱ?");
+                intent.putExtra(Intent.EXTRA_TITLE,"Editor Match Up");
+                intent.setType("text/plain");
+                startActivity(intent.createChooser(intent,"공유"));
             default:
                 break;
         }
